@@ -29,30 +29,6 @@ namespace dashboard_with_login_and_admin_form
             };
             buttonShowAdminForm.Click += (sender, e) => AdminForm.Show(this);
         }
-
-        bool _isLoggedIn = false;
-        public bool IsLoggedIn
-        {
-            get => _isLoggedIn;
-            set
-            {
-                if (!Equals(_isLoggedIn, value))
-                {
-                    _isLoggedIn = value;
-                    onIsLoggedInChanged();
-                }
-            }
-        }
-        private void onIsLoggedInChanged()
-        {
-            if (IsLoggedIn)
-            {
-                // WindowState = FormWindowState.Maximized;
-                Text = $"Welcome {LoginForm.UserName}";
-                Visible = true;
-            }
-            else execLoginFlow();
-        }
         private void execLoginFlow()
         {
             Visible = false;
@@ -76,6 +52,30 @@ namespace dashboard_with_login_and_admin_form
                     IsLoggedIn = true;
                 }
             }
+        }
+
+        bool _isLoggedIn = false;
+        public bool IsLoggedIn
+        {
+            get => _isLoggedIn;
+            set
+            {
+                if (!Equals(_isLoggedIn, value))
+                {
+                    _isLoggedIn = value;
+                    onIsLoggedInChanged();
+                }
+            }
+        }
+        private void onIsLoggedInChanged()
+        {
+            if (IsLoggedIn)
+            {
+                // WindowState = FormWindowState.Maximized;
+                Text = $"Welcome {LoginForm.UserName}";
+                Visible = true;
+            }
+            else execLoginFlow();
         }
     }
 }
